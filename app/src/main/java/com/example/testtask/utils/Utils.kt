@@ -1,7 +1,10 @@
 package com.example.testtask.utils
 
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
+
+fun myLog(msg: String) = Log.d("myLog", msg)
 
 fun formatEmployeeFirstName(firstName: String): String {
     return firstName.toLowerCase().capitalize()

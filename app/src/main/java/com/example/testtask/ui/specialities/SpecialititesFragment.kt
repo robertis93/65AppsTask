@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.testtask.R
 import com.example.testtask.data_source.Repository
 import com.example.testtask.ui.MainActivity
@@ -20,6 +21,11 @@ class SpecialititesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.specialitites_fragment, container, false)
+    }
+
+    fun onClickSpecialityItem(specialityId: Int){
+        val action = SpecialititesFragmentDirections.actionSpecialititesFragmentToEmployeesFragment(specialityId)
+        findNavController().navigate(action)
     }
 }
 

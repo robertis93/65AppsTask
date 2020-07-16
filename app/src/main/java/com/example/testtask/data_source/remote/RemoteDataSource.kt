@@ -3,10 +3,19 @@ package com.example.testtask.data_source.remote
 import androidx.lifecycle.MutableLiveData
 import com.example.testtask.data.Employee
 import com.example.testtask.data.Speciality
+import com.example.testtask.utils.myLog
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 class RemoteDataSource {
+    interface Api{
+        @GET("testTask.json")
+        fun getData()
+    }
     val employees = MutableLiveData<List<Employee>>()
     val specialities = MutableLiveData<List<Speciality>>()
+    val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
+
 
     //retrofit || okhttp
     fun getJson(): String{
@@ -15,6 +24,7 @@ class RemoteDataSource {
 
     //GSON || kotlin Serialization
     fun parseJson(json: String){
+        myLog(json)
         TODO()
         //employees.value = ...
         //specialities.value = ...
