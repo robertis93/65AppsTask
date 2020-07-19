@@ -16,18 +16,18 @@ class RemoteDataSource {
     val specialities = MutableLiveData<List<Speciality>>()
     val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
 
-
-    //retrofit || okhttp
-    fun getJson(): String{
-        return json
-    }
-
-    //GSON || kotlin Serialization
-    fun parseJson(json: String){
-        myLog(json)
-        TODO()
-        //employees.value = ...
-        //specialities.value = ...
+    fun refreshAll(){
+        api.enqueue(new Callback<List<PostModel>>() {
+            @Override
+            public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
+                employees.postValue(employeesFromServer)
+                specialities.postValue(specialitiesFromServer)
+            }
+            @Override
+            public void onFailure(Call<List<PostModel>> call, Throwable t) {
+                //Произошла ошибка
+            }
+        });
     }
 }
 

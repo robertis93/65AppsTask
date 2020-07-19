@@ -16,4 +16,8 @@ class Repository (val localDataSource: LocalDataSource,val remoteDataSource: Rem
             localDataSource.updateSpescialities(it)
         }
     }
+
+    fun refreshAll(){
+        remoteDataSource.refreshAll()
+    }
 }
