@@ -17,7 +17,7 @@ class RemoteDataSource {
     val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
 
     fun refreshAll(){
-        api.enqueue(new Callback<List<PostModel>>() {
+/*        api.enqueue(new Callback<List<PostModel>>() {
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 employees.postValue(employeesFromServer)
@@ -27,7 +27,7 @@ class RemoteDataSource {
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 //Произошла ошибка
             }
-        });
+        });*/
     }
 }
 

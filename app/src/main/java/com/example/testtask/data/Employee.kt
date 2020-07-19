@@ -10,12 +10,11 @@ class Employee (
     val lastName: String = "",
     val birthday: String = "",
     val avatarUrl: String = "",
-    @TypeConverters(ListSpecialitiesTypeConverter::class)
-    val specialties: List<Speciality> = emptyList(),
     @PrimaryKey
     val id: String = UUID.randomUUID().toString()
 ){
-
+    @TypeConverters(ListSpecialitiesTypeConverter::class)
+    var specialties: List<Speciality> = emptyList()
     fun getAge(): Int{
         return getAgeByDateOfBirth(birthday)
     }
