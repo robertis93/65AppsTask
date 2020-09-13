@@ -3,7 +3,7 @@ package com.example.testtask.data_source
 import com.example.testtask.data_source.local.LocalDataSource
 import com.example.testtask.data_source.remote.RemoteDataSource
 
-class Repository (val localDataSource: LocalDataSource,val remoteDataSource: RemoteDataSource){
+class Repository (private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource){
     val employees = localDataSource.employees
     val specialities = localDataSource.specialities
     init {
