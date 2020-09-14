@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
+        android:textSize= "30dp"
+        android:layout_marginRight="15dp"
 
         />
 
@@ -22,5 +24,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="TextView"
-         />
+        android:textSize= "30dp"/>
 </LinearLayout>
