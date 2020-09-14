@@ -31,23 +31,24 @@ fun formatDateOfBirth(dateOfBirth: String): String {
     TODO("преобразовать ответ сервера к требуемому формату (число.месяц.год. Пример: 22.11.1987 г. В случае отсутствия даты, показывать прочерк ««)")
 }
 
-fun getAgeByDateOfBirth(dateOfBirth: String): Int {
-    val sdf = SimpleDateFormat("dd.MM.yyyy")
-    val currentDate = sdf.format(Date())
-    val dateCurrentIntYear = currentDate.substring(6..9).toInt()
-    val dateBirthIntYear = dateOfBirth.substring(6..9).toInt()
-    val dateCurrentIntMounth = currentDate.substring(3..4).toInt()
-    val dateBirthIntMounth = dateOfBirth.substring(3..4).toInt()
-    val dateCurrentIntDay = currentDate.substring(0..1).toInt()
-    val dateBirthIntDay = dateOfBirth.substring(0..1).toInt()
-
-
-    if (dateBirthIntMounth - dateCurrentIntMounth > 0 && dateCurrentIntDay - dateBirthIntDay > 0)
-        return dateCurrentIntYear - dateBirthIntYear -1
-    else
-        return dateCurrentIntYear - dateBirthIntYear
-
-
+fun getAgeByDateOfBirth(dateOfBirth: String?): Int {
+    return 0
+//    val sdf = SimpleDateFormat("dd.MM.yyyy")
+//    val currentDate = sdf.format(Date())
+//    val dateCurrentIntYear = currentDate.substring(6..9).toInt()
+//    val dateBirthIntYear = dateOfBirth.substring(6..9).toInt()
+//    val dateCurrentIntMounth = currentDate.substring(3..4).toInt()
+//    val dateBirthIntMounth = dateOfBirth.substring(3..4).toInt()
+//    val dateCurrentIntDay = currentDate.substring(0..1).toInt()
+//    val dateBirthIntDay = dateOfBirth.substring(0..1).toInt()
+//
+//
+//    if (dateBirthIntMounth - dateCurrentIntMounth > 0 && dateCurrentIntDay - dateBirthIntDay > 0)
+//        return dateCurrentIntYear - dateBirthIntYear -1
+//    else
+//        return dateCurrentIntYear - dateBirthIntYear
+//
+//
 
 
 }

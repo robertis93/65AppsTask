@@ -12,7 +12,7 @@ class EmployeeDetailViewModel(val repository: Repository) : ViewModel() {
         this.employeeId = employeeId
     }
 
-    val employee: LiveData<Employee> = Transformations.map(repository.employees){
-        TODO("получить ужного сотрудника по id")
+    val employeeLiveData: LiveData<Employee> = Transformations.map(repository.employees){employees ->
+        employees.find { employee -> employee.id == employeeId }
     }
 }
