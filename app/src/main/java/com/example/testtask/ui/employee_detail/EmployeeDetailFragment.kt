@@ -33,6 +33,10 @@ class EmployeeDetailFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.employeeLiveData.observe(viewLifecycleOwner, Observer {employee->
             name_textView.text = employee.firstName
+            sec_name_textView.text = employee.lastName
+            dateOfBirth_textView.text = employee.trueFormatDateOfBirth()
+            age_textView.text = employee.getAge().toString()
+            //speciality_textView.text = employee.specialties
 
          })
     }

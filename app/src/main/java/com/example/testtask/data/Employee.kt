@@ -1,6 +1,7 @@
 package com.example.testtask.data
 
 import androidx.room.*
+import com.example.testtask.utils.formatDateOfBirth
 import com.example.testtask.utils.getAgeByDateOfBirth
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
@@ -23,8 +24,12 @@ data class Employee (
     @TypeConverters(ListSpecialitiesTypeConverter::class)
     @SerializedName(value = "specialty")
     var specialties: List<Speciality> = emptyList()
-    fun getAge(): Int{
+    fun getAge(): Int? {
         return getAgeByDateOfBirth(birthday)
+    }
+
+    fun trueFormatDateOfBirth(): String {
+        return formatDateOfBirth(birthday)
     }
 }
 
