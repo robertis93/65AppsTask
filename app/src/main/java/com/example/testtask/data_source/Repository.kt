@@ -8,6 +8,8 @@ import com.example.testtask.utils.formatEmployeeFirstName
 class Repository (private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource){
     val employees = localDataSource.employees
     val specialities = localDataSource.specialities
+
+
     init {
         remoteDataSource.employees.observeForever {employees ->
             val employeeList = mutableListOf<Employee>()

@@ -36,7 +36,7 @@ class EmployeeDetailFragment() : Fragment() {
             sec_name_textView.text = employee.lastName
             dateOfBirth_textView.text = employee.trueFormatDateOfBirth()
             age_textView.text = employee.getAge().toString()
-            //speciality_textView.text = employee.specialties
+            speciality_textView.text = employee.getSpecialities()
 
          })
     }

@@ -1,6 +1,8 @@
 package com.example.testtask.utils
 
 import android.util.Log
+import com.example.testtask.data.Employee
+import com.example.testtask.data.Speciality
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -56,7 +58,16 @@ fun formatDateOfBirth(dateOfBirth: String?): String {
 
          yearsEmployee - 1
      } else (yearsEmployee)
-
-
 }
+
+fun getSpecialitiesFromEmployee(specialties: List<Speciality>) : String {
+    val specialitiesSet = mutableSetOf<String>()
+        for (speciality in specialties) {
+        var specialitiesOfEmployee = speciality.name
+            specialitiesSet.addAll(listOf(specialitiesOfEmployee))
+
+    }
+    return specialitiesSet.toString()
+}
+
 

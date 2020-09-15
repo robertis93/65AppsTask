@@ -3,6 +3,7 @@ package com.example.testtask.data
 import androidx.room.*
 import com.example.testtask.utils.formatDateOfBirth
 import com.example.testtask.utils.getAgeByDateOfBirth
+import com.example.testtask.utils.getSpecialitiesFromEmployee
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
@@ -31,6 +32,10 @@ data class Employee (
     fun trueFormatDateOfBirth(): String {
         return formatDateOfBirth(birthday)
     }
+    fun getSpecialities() : String {
+        return getSpecialitiesFromEmployee(specialties)
+    }
+    
 }
 
 
