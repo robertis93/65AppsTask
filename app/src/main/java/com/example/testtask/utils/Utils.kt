@@ -1,33 +1,28 @@
 package com.example.testtask.utils
 
-import android.util.Log
-import com.example.testtask.data.Employee
+
 import com.example.testtask.data.Speciality
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun myLog(msg: String) = Log.d("myLog", msg)
 
-fun formatEmployeeFirstName(firstName: String): String {
+
+fun formatEmployeeName(firstName: String): String {
     return firstName.toLowerCase().capitalize()
 }
 
-fun formatEmployeeLastName(lastName: String): String {
-    return lastName.toLowerCase().capitalize()
-}
-
 fun formatDateOfBirth(dateOfBirth: String?): String {
-    if (dateOfBirth == null || dateOfBirth == "") {
+    if (dateOfBirth.isNullOrEmpty()) {
         return "Дата рождения неизвестна"
     } else {
-        var symbol = dateOfBirth.indexOf('-')
-        var year = dateOfBirth.substring(0..symbol - 1)
-        var right = dateOfBirth.substring(symbol + 1) //03-23
-        var symbol2 = right.indexOf('-')  //2
-        var mounth = right.substring(0..symbol2 - 1)  //03
-        var right2 = right.substring(symbol2 + 1)
+        val symbol = dateOfBirth.indexOf('-')
+        val year = dateOfBirth.substring(0..symbol - 1)
+        val right = dateOfBirth.substring(symbol + 1) //03-23
+        val symbol2 = right.indexOf('-')  //2
+        val mounth = right.substring(0..symbol2 - 1)  //03
+        val right2 = right.substring(symbol2 + 1)
         var symbol3 = right2.indexOf('-')
-        var day = right2.substring(0)
+        val day = right2.substring(0)
 
         return if (symbol > 3)
             "$day.$mounth.$year"
@@ -63,7 +58,7 @@ fun formatDateOfBirth(dateOfBirth: String?): String {
 fun getSpecialitiesFromEmployee(specialties: List<Speciality>) : String {
     val specialitiesSet = mutableSetOf<String>()
         for (speciality in specialties) {
-        var specialitiesOfEmployee = speciality.name
+        val specialitiesOfEmployee = speciality.name
             specialitiesSet.addAll(listOf(specialitiesOfEmployee))
 
     }

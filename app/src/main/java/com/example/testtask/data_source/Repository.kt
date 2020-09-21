@@ -3,7 +3,7 @@ package com.example.testtask.data_source
 import com.example.testtask.data.Employee
 import com.example.testtask.data_source.local.LocalDataSource
 import com.example.testtask.data_source.remote.RemoteDataSource
-import com.example.testtask.utils.formatEmployeeFirstName
+import com.example.testtask.utils.formatEmployeeName
 
 class Repository (private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource){
     val employees = localDataSource.employees
@@ -15,8 +15,8 @@ class Repository (private val localDataSource: LocalDataSource, private val remo
             val employeeList = mutableListOf<Employee>()
             for (employee in employees){
                 val convertedEmploeey = employee.copy(
-                    firstName =  formatEmployeeFirstName(employee.firstName),
-                    lastName =  formatEmployeeFirstName(employee.lastName)
+                    firstName =  formatEmployeeName(employee.firstName),
+                    lastName =  formatEmployeeName(employee.lastName)
                 )
                 convertedEmploeey.specialties = employee.specialties
                 employeeList.add(convertedEmploeey)

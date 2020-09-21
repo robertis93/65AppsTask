@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtask.R
 import com.example.testtask.data.Employee
-import com.example.testtask.data.Speciality
 import kotlinx.android.synthetic.main.employee_item.view.*
-import kotlinx.android.synthetic.main.speciality_item.view.*
+
 
 
 

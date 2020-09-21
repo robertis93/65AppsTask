@@ -53,7 +53,7 @@ class RemoteDataSource {
     private fun getSpecailities(employees: List<Employee>): List<Speciality> {
         val specialitiesSet = mutableSetOf<Speciality>()
         for (employee in employees) {
-            var specialities = employee.specialties
+            val specialities = employee.specialties
             specialitiesSet.addAll(specialities)
         }
         return specialitiesSet.toList()

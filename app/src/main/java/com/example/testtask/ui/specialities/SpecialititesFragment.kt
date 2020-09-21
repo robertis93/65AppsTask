@@ -1,6 +1,6 @@
 package com.example.testtask.ui.specialities
 
-import androidx.lifecycle.ViewModelProviders
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.example.testtask.data.Speciality
 import com.example.testtask.data_source.Repository
 import com.example.testtask.ui.MainActivity
 import kotlinx.android.synthetic.main.specialitites_fragment.*
-import kotlinx.android.synthetic.main.speciality_item.*
+
 
 class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
     val viewModel: SpecialititesViewModel by viewModels{SpecialititesViewModelFactory((activity as MainActivity).repository)}
