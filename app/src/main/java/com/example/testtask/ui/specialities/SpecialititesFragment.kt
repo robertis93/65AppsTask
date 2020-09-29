@@ -16,11 +16,13 @@ import com.example.testtask.R
 import com.example.testtask.data.Speciality
 import com.example.testtask.data_source.Repository
 import com.example.testtask.ui.MainActivity
+import com.example.testtask.utils.CharacterItemDecoration
+import com.example.testtask.utils.TestTask
 import kotlinx.android.synthetic.main.specialitites_fragment.*
 
 
 class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
-    val viewModel: SpecialititesViewModel by viewModels{SpecialititesViewModelFactory((activity as MainActivity).repository)}
+    val viewModel: SpecialititesViewModel by viewModels{SpecialititesViewModelFactory(TestTask.repository)}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,9 +33,11 @@ class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycler_specialities.layoutManager = LinearLayoutManager(context)
+        recycler_specialities.addItemDecoration(CharacterItemDecoration(50))
         viewModel.specialitiesLiveData.observe(viewLifecycleOwner, Observer { specialitiesList->
             val adapter = SpeciliatiesAdapter(specialitiesList, this)
             recycler_specialities.adapter = adapter
+
         })
 
     }

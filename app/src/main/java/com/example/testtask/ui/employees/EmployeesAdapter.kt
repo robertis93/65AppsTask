@@ -41,8 +41,10 @@ class EmployeesAdapter(val employees : List<Employee>, val listener: Listener): 
         fun bind(employee: Employee){
             itemView.employee_name.text = employee.firstName
             itemView.employee_secondname.text = employee.lastName
-            itemView.employee_age.text = employee.getAge().toString()
-
+            if (employee.getAge() == null) {
+                itemView.employee_age.setText(R.string.null_age)
+            } else
+                itemView.employee_age.text = employee.getAge().toString()
         }
     }
 

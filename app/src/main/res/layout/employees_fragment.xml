@@ -5,12 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.employees.EmployeesFragment">
 
-   
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_employees"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="15dp"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

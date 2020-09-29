@@ -15,11 +15,12 @@ import androidx.navigation.fragment.navArgs
 import com.example.testtask.R
 import com.example.testtask.data_source.Repository
 import com.example.testtask.ui.MainActivity
+import com.example.testtask.utils.TestTask
 import kotlinx.android.synthetic.main.employee_detail_fragment.*
 
 
 class EmployeeDetailFragment() : Fragment() {
-    val viewModel: EmployeeDetailViewModel by viewModels{EmployeeDetailViewModelFactory((activity as MainActivity).repository)}
+    val viewModel: EmployeeDetailViewModel by viewModels{EmployeeDetailViewModelFactory(TestTask.repository)}
     val args: EmployeeDetailFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +35,7 @@ class EmployeeDetailFragment() : Fragment() {
         viewModel.employeeLiveData.observe(viewLifecycleOwner, Observer {employee->
             name_textView.text = employee.firstName
             sec_name_textView.text = employee.lastName
-            dateOfBirth_textView.text = employee.trueFormatDateOfBirth()
+            dateOfBirth_textView.text = employee.trueFormatDateOfBirth() 
             age_textView.text = employee.getAge().toString()
             speciality_textView.text = employee.getSpecialities()
 

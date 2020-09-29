@@ -6,14 +6,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-
 fun formatEmployeeName(firstName: String): String {
     return firstName.toLowerCase().capitalize()
 }
 
-fun formatDateOfBirth(dateOfBirth: String?): String {
+fun formatDateOfBirth(dateOfBirth: String?): String? {
     if (dateOfBirth.isNullOrEmpty()) {
-        return "Дата рождения неизвестна"
+        return null
     } else {
         val symbol = dateOfBirth.indexOf('-')
         val year = dateOfBirth.substring(0..symbol - 1)
@@ -30,39 +29,27 @@ fun formatDateOfBirth(dateOfBirth: String?): String {
     }
 }
 
- fun getAgeByDateOfBirth(dateOfBirth: String?): Int? {
+fun getAgeByDateOfBirth(dateOfBirth: String?): Int? {
 
     val employeeDateOfBirth = formatDateOfBirth(dateOfBirth)
-     if (employeeDateOfBirth== "Дата рождения неизвестна")
-         return 0
-     val nowingDate =  SimpleDateFormat("dd.MM.yyyy")
-     val currentDate = nowingDate.format(Date())
-     val dateCurrentIntYear = currentDate.substring(6..9).toInt()
-     val dateCurrentIntMounth = currentDate.substring(3..4).toInt()
-     val dateCurrentIntDay = currentDate.substring(0..1).toInt()
+    if (employeeDateOfBirth == null)
+        return null
+    val nowingDate = SimpleDateFormat("dd.MM.yyyy")
+    val currentDate = nowingDate.format(Date())
+    val dateCurrentIntYear = currentDate.substring(6..9).toInt()
+    val dateCurrentIntMounth = currentDate.substring(3..4).toInt()
+    val dateCurrentIntDay = currentDate.substring(0..1).toInt()
     val dateBirthIntYear = employeeDateOfBirth?.substring(6..9)?.toInt()
     val dateBirthIntMounth = employeeDateOfBirth.substring(3..4)?.toInt()
     val dateBirthIntDay = employeeDateOfBirth.substring(0..1)?.toInt()
-
-
-     val yearsEmployee = dateCurrentIntYear - dateBirthIntYear!!
-     return if ( dateBirthIntDay>dateCurrentIntDay && dateCurrentIntMounth>=dateBirthIntMounth){
-         yearsEmployee
-     } else if (dateCurrentIntMounth<=dateBirthIntMounth) {
-
-
-         yearsEmployee - 1
-     } else (yearsEmployee)
+    val yearsEmployee = dateCurrentIntYear - dateBirthIntYear!!
+    return if (dateBirthIntDay > dateCurrentIntDay && dateCurrentIntMounth >= dateBirthIntMounth) {
+        yearsEmployee
+    } else if (dateCurrentIntMounth <= dateBirthIntMounth) {
+        yearsEmployee - 1
+    } else (yearsEmployee)
 }
 
-fun getSpecialitiesFromEmployee(specialties: List<Speciality>) : String {
-    val specialitiesSet = mutableSetOf<String>()
-        for (speciality in specialties) {
-        val specialitiesOfEmployee = speciality.name
-            specialitiesSet.addAll(listOf(specialitiesOfEmployee))
-
-    }
-    return specialitiesSet.toString()
-}
+fun getSpecialitiesFromEmployee(specialties: List<Speciality>) = specialties.map{it.name}.toString()
 
 

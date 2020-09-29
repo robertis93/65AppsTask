@@ -29,7 +29,7 @@ data class Employee (
         return getAgeByDateOfBirth(birthday)
     }
 
-    fun trueFormatDateOfBirth(): String {
+    fun trueFormatDateOfBirth(): String? {
         return formatDateOfBirth(birthday)
     }
     fun getSpecialities() : String {

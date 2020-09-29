@@ -9,13 +9,9 @@ import com.example.testtask.data_source.local.LocalDataSource
 import com.example.testtask.data_source.local.room.RoomDB
 import com.example.testtask.data_source.remote.RemoteDataSource
 
-class MainActivity : AppCompatActivity() { // android navigation components
-    lateinit var repository: Repository
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val roomDB = Room.databaseBuilder(applicationContext, RoomDB::class.java, "db").allowMainThreadQueries().build()
-        repository = Repository(LocalDataSource(roomDB), RemoteDataSource())//") //Dagger2 (Dependency in injection) || ServiceLocator
-        repository.refreshAll()
         setContentView(R.layout.activity_main)
     }
 }
