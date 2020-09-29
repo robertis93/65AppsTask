@@ -14,13 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.testtask.R
 import com.example.testtask.data_source.Repository
-import com.example.testtask.ui.MainActivity
-import com.example.testtask.utils.TestTask
+import com.example.testtask.TestTaskApp
 import kotlinx.android.synthetic.main.employee_detail_fragment.*
 
 
 class EmployeeDetailFragment() : Fragment() {
-    val viewModel: EmployeeDetailViewModel by viewModels{EmployeeDetailViewModelFactory(TestTask.repository)}
+    val viewModel: EmployeeDetailViewModel by viewModels{EmployeeDetailViewModelFactory(TestTaskApp.repository)}
     val args: EmployeeDetailFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

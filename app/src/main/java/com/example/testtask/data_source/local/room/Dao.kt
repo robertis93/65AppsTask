@@ -11,16 +11,16 @@ interface EmployeeDAO{
     fun getEmployeesLiveData(): LiveData<List<Employee>>
 
     @Insert
-    fun insert(employee: Employee)
+    suspend fun insert(employee: Employee)
 
     @Update
-    fun update(employee: Employee)
+    suspend fun update(employee: Employee)
 
     @Delete
-    fun delete(employee: Employee)
+    suspend fun delete(employee: Employee)
 
     @Query("DElETE FROM employees")
-    fun deleteAll()
+    suspend fun deleteAll()
 }
 
 @Dao
@@ -29,15 +29,15 @@ interface SpecialitiesDAO{
     fun getSpecialitiesLiveData(): LiveData<List<Speciality>>
 
     @Insert
-    fun insert(speciality: Speciality)
+    suspend fun insert(speciality: Speciality)
 
     @Update
-    fun update(speciality: Speciality)
+    suspend fun update(speciality: Speciality)
 
     @Delete
-    fun delete(speciality: Speciality)
+    suspend fun delete(speciality: Speciality)
 
     @Query("DElETE FROM specialities")
-    fun deleteAll()
+    suspend fun deleteAll()
 }
 

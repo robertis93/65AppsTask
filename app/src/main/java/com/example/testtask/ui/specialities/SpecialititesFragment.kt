@@ -10,19 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testtask.R
 import com.example.testtask.data.Speciality
 import com.example.testtask.data_source.Repository
-import com.example.testtask.ui.MainActivity
 import com.example.testtask.utils.CharacterItemDecoration
-import com.example.testtask.utils.TestTask
+import com.example.testtask.TestTaskApp
 import kotlinx.android.synthetic.main.specialitites_fragment.*
+import kotlinx.coroutines.launch
 
 
 class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
-    val viewModel: SpecialititesViewModel by viewModels{SpecialititesViewModelFactory(TestTask.repository)}
+    val viewModel: SpecialititesViewModel by viewModels{SpecialititesViewModelFactory(TestTaskApp.repository)}
+    lateinit var specialities: List<Speciality>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,10 +37,16 @@ class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
         recycler_specialities.layoutManager = LinearLayoutManager(context)
         recycler_specialities.addItemDecoration(CharacterItemDecoration(50))
         viewModel.specialitiesLiveData.observe(viewLifecycleOwner, Observer { specialitiesList->
+            specialities = specialitiesList
             val adapter = SpeciliatiesAdapter(specialitiesList, this)
             recycler_specialities.adapter = adapter
 
         })
+        deleteButton.setOnClickListener {
+            lifecycleScope.launch {
+                TestTaskApp.repository.deleteSpecialityFromLocalDB(specialities[0])
+            }            
+        }
 
     }
 

@@ -11,15 +11,19 @@ class LocalDataSource (private val roomDB: RoomDB){
     val employees = roomDB.employeesDao().getEmployeesLiveData()
     val specialities = roomDB.specialitiesDao().getSpecialitiesLiveData()
 
-    fun updateEmployees(employees: List<Employee>){
+    suspend fun updateEmployees(employees: List<Employee>){
         roomDB.employeesDao().deleteAll()
         for (employee in employees)
             roomDB.employeesDao().insert(employee)
     }
 
-    fun updateSpescialities(spescialities: List<Speciality>){
+    suspend fun updateSpescialities(spescialities: List<Speciality>){
         roomDB.specialitiesDao().deleteAll()
         for (speciality in spescialities)
             roomDB.specialitiesDao().insert(speciality)
+    }
+
+    suspend fun deleteSpeciality(spesciality: Speciality){
+        roomDB.specialitiesDao().delete(spesciality)
     }
 }
