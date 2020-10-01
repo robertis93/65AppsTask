@@ -9,11 +9,28 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class Repository (private val localDataSource: LocalDataSource, private val remoteDataSource: RemoteDataSource){
-    val employees = localDataSource.employees
-    val specialities = localDataSource.specialities
+    suspend fun getSpecialities(forceRefresh: Boolean = false): List<Speciality>{
+        if (forceRefresh){
+            val specialitiesFromServer = remoteDataSource.getSpecialities()
+            localDataSource.updateSpescialities(specialitiesFromServer)
+            return specialitiesFromServer
+        }
+        val specialities = localDataSource.getSpecialities()
+        return if (specialities.isNotEmpty())
+            specialities
+        else{
+            val specialitiesFromServer = remoteDataSource.getSpecialities()
+            localDataSource.updateSpescialities(specialitiesFromServer)
+            specialitiesFromServer
+        }
+    }
 
-    init {
-        remoteDataSource.employees.observeForever {employees ->
+    suspend fun getEmployees(): List<Employee>{
+        val employees = localDataSource.getEmployees()
+        return if (employees.isNotEmpty())
+            employees
+        else{
+            val employeesFromServer = remoteDataSource.getEmployees()
             val employeeList = mutableListOf<Employee>()
             for (employee in employees){
                 val convertedEmploeey = employee.copy(
@@ -23,22 +40,9 @@ class Repository (private val localDataSource: LocalDataSource, private val remo
                 convertedEmploeey.specialties = employee.specialties
                 employeeList.add(convertedEmploeey)
             }
-            //"сохранить список сотрудников в локальную БД"
-            GlobalScope.launch {
-                localDataSource.updateEmployees(employeeList)
-            }
-
+            localDataSource.updateEmployees(employeeList)
+            employeeList
         }
-        remoteDataSource.specialities.observeForever {
-            //"сохранить список специальностей в локальную БД"
-            GlobalScope.launch {
-                localDataSource.updateSpescialities(it)
-            }
-        }
-    }
-
-    fun refreshAll(){
-        remoteDataSource.refreshAll()
     }
 
     suspend fun deleteSpecialityFromLocalDB(speciality: Speciality){

@@ -15,7 +15,7 @@ import retrofit2.http.GET
 class RemoteDataSource {
     interface Api {
         @GET("testTask.json")
-        fun getData(): Call<Response>
+        suspend fun getData(): Response
     }
 
     val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
@@ -27,28 +27,38 @@ class RemoteDataSource {
     val retrofitService: Api = retrofit.create(Api::class.java)
 
 
-    val employees = MutableLiveData<List<Employee>>()
-    val specialities = MutableLiveData<List<Speciality>>()
+    //val employees = MutableLiveData<List<Employee>>()
+    //val specialities = MutableLiveData<List<Speciality>>()
 
-
-    fun refreshAll() {
-        val call = retrofitService.getData()
-        call.enqueue(object : Callback<Response> {
-            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                val employeesList = response.body()?.employees
-                if (employeesList != null) {
-                    employees.postValue(employeesList)
-                    val specialitiesList = getSpecailities(employeesList)
-                    specialities.postValue(specialitiesList)
-                }
-            }
-
-            override fun onFailure(call: Call<Response>, t: Throwable) {
-                Log.d("myLog", t.toString())
-            }
-
-        });
+    suspend fun getEmployees(): List<Employee>{
+        return retrofitService.getData().employees
     }
+
+    suspend fun getSpecialities(): List<Speciality>{
+        val employeesList = getEmployees()
+        val specialitiesList = getSpecailities(employeesList)
+        return specialitiesList
+    }
+    
+
+//    fun refreshAll() {
+//        val call = retrofitService.getData()
+//        call.enqueue(object : Callback<Response> {
+//            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+//                val employeesList = response.body()?.employees
+//                if (employeesList != null) {
+//                    employees.postValue(employeesList)
+//                    val specialitiesList = getSpecailities(employeesList)
+//                    specialities.postValue(specialitiesList)
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Response>, t: Throwable) {
+//                Log.d("myLog", t.toString())
+//            }
+//
+//        });
+//    }
 
     private fun getSpecailities(employees: List<Employee>): List<Speciality> {
         val specialitiesSet = mutableSetOf<Speciality>()

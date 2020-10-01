@@ -16,6 +16,5 @@ class TestTaskApp : Application() {
         super.onCreate()
         val roomDB = Room.databaseBuilder(applicationContext, RoomDB::class.java, "db").build()
         repository = Repository(LocalDataSource(roomDB), RemoteDataSource())//") //Dagger2 (Dependency in injection) || ServiceLocator
-        repository.refreshAll()
     }
 }

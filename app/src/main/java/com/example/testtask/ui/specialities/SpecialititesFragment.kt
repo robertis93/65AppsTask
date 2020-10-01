@@ -36,12 +36,25 @@ class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
         super.onViewCreated(view, savedInstanceState)
         recycler_specialities.layoutManager = LinearLayoutManager(context)
         recycler_specialities.addItemDecoration(CharacterItemDecoration(50))
-        viewModel.specialitiesLiveData.observe(viewLifecycleOwner, Observer { specialitiesList->
-            specialities = specialitiesList
-            val adapter = SpeciliatiesAdapter(specialitiesList, this)
+        lifecycleScope.launch{
+            val specialities = viewModel.getSpecialities()
+            val adapter = SpeciliatiesAdapter(specialities, this@SpecialititesFragment)
             recycler_specialities.adapter = adapter
+        }
 
-        })
+        refreshButton.setOnClickListener{
+            lifecycleScope.launch{
+                val specialities = viewModel.getSpecialities(true)
+                val adapter = SpeciliatiesAdapter(specialities, this@SpecialititesFragment)
+                recycler_specialities.adapter = adapter
+            }
+        }
+//        viewModel.specialities.observe(viewLifecycleOwner, Observer { specialitiesList->
+//            specialities = specialitiesList
+//            val adapter = SpeciliatiesAdapter(specialitiesList, this)
+//            recycler_specialities.adapter = adapter
+//
+//        })
         deleteButton.setOnClickListener {
             lifecycleScope.launch {
                 TestTaskApp.repository.deleteSpecialityFromLocalDB(specialities[0])

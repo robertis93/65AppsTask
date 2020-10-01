@@ -7,8 +7,11 @@ import com.example.testtask.data.Speciality
 
 @Dao
 interface EmployeeDAO{
+//    @Query("SELECT * FROM employees")
+//    fun getEmployeesLiveData(): LiveData<List<Employee>>
+
     @Query("SELECT * FROM employees")
-    fun getEmployeesLiveData(): LiveData<List<Employee>>
+    suspend fun getEmployees(): List<Employee>
 
     @Insert
     suspend fun insert(employee: Employee)
@@ -25,8 +28,11 @@ interface EmployeeDAO{
 
 @Dao
 interface SpecialitiesDAO{
+//    @Query("SELECT * FROM specialities")
+//    fun getSpecialitiesLiveData(): LiveData<List<Speciality>>
+
     @Query("SELECT * FROM specialities")
-    fun getSpecialitiesLiveData(): LiveData<List<Speciality>>
+    suspend fun getSpecialities(): List<Speciality>
 
     @Insert
     suspend fun insert(speciality: Speciality)
