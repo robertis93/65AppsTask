@@ -35,7 +35,7 @@ data class Employee (
     fun getSpecialities() : String {
         return getSpecialitiesFromEmployee(specialties)
     }
-    
+
 }
 
 
