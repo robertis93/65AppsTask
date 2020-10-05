@@ -55,11 +55,7 @@ class SpecialititesFragment : Fragment(),  SpeciliatiesAdapter.Listener  {
 //            recycler_specialities.adapter = adapter
 //
 //        })
-        deleteButton.setOnClickListener {
-            lifecycleScope.launch {
-                TestTaskApp.repository.deleteSpecialityFromLocalDB(specialities[0])
-            }            
-        }
+        
 
     }
 

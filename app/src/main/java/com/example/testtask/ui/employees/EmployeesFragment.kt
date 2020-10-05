@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.example.testtask.data_source.Repository
 import com.example.testtask.utils.CharacterItemDecoration
 import com.example.testtask.TestTaskApp
 import kotlinx.android.synthetic.main.employees_fragment.*
+import kotlinx.coroutines.launch
 
 
 class EmployeesFragment : androidx.fragment.app.Fragment(), EmployeesAdapter.Listener {
@@ -36,10 +38,17 @@ class EmployeesFragment : androidx.fragment.app.Fragment(), EmployeesAdapter.Lis
         super.onViewCreated(view, savedInstanceState)
         recycler_employees.addItemDecoration(CharacterItemDecoration(50))
         recycler_employees.layoutManager = LinearLayoutManager(context)
-        viewModel.employeesLiveData.observe(viewLifecycleOwner, Observer<List<Employee>> { employeesList->
-            val adapter = EmployeesAdapter(employeesList, this)
+
+        lifecycleScope.launch {
+            val employees = viewModel.getEmployees()
+            val adapter = EmployeesAdapter(employees, this@EmployeesFragment )
             recycler_employees.adapter = adapter
-    })
+        }
+       /* viewModel.employeesLiveData.observe(viewLifecycleOwner, Observer<List<Employee>> { employeesList->
+            val adapter = EmployeesAdapter(employeesList, this)
+            recycler_employees.adapter = adapter*/
+
+
     }
 
     override fun onItemClick(employee: Employee) {

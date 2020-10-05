@@ -18,49 +18,25 @@ class RemoteDataSource {
         suspend fun getData(): Response
     }
 
-    val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
-    val retrofit = Retrofit.Builder()
+    private val BASE_URL = "https://gitlab.65apps.com/65gb/static/raw/master/"
+    private val retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()
 
-    val retrofitService: Api = retrofit.create(Api::class.java)
+    private val retrofitService: Api = retrofit.create(Api::class.java)
 
-
-    //val employees = MutableLiveData<List<Employee>>()
-    //val specialities = MutableLiveData<List<Speciality>>()
-
-    suspend fun getEmployees(): List<Employee>{
+    suspend fun getEmployees(): List<Employee> {
         return retrofitService.getData().employees
     }
 
-    suspend fun getSpecialities(): List<Speciality>{
+    suspend fun getSpecialities(): List<Speciality> {
         val employeesList = getEmployees()
-        val specialitiesList = getSpecailities(employeesList)
+        val specialitiesList = takeSpecailitiesFromEmployee(employeesList)
         return specialitiesList
     }
-    
 
-//    fun refreshAll() {
-//        val call = retrofitService.getData()
-//        call.enqueue(object : Callback<Response> {
-//            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-//                val employeesList = response.body()?.employees
-//                if (employeesList != null) {
-//                    employees.postValue(employeesList)
-//                    val specialitiesList = getSpecailities(employeesList)
-//                    specialities.postValue(specialitiesList)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<Response>, t: Throwable) {
-//                Log.d("myLog", t.toString())
-//            }
-//
-//        });
-//    }
-
-    private fun getSpecailities(employees: List<Employee>): List<Speciality> {
+    private fun takeSpecailitiesFromEmployee(employees: List<Employee>): List<Speciality> {
         val specialitiesSet = mutableSetOf<Speciality>()
         for (employee in employees) {
             val specialities = employee.specialties

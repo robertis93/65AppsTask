@@ -7,12 +7,10 @@ import com.example.testtask.data.Employee
 import com.example.testtask.data_source.Repository
 
 class EmployeeDetailViewModel(val repository: Repository) : ViewModel() {
-    private var employeeId: String? = null
-    fun initEmployeeId(employeeId: String){
-        this.employeeId = employeeId
-    }
+/*    var employeeId: String? = null
 
-    val employeeLiveData: LiveData<Employee> = Transformations.map(repository.employees){employees ->
-        employees.find { employee -> employee.id == employeeId }
-    }
+    val employeeLiveData = Transformations.map(repository.employeesLiveData){ employees ->
+        employees.find { employee -> employee.id == employeeId}
+    }*/
+    suspend fun getEmployeeDetail(employeeId: String): Employee? = repository.getEmployees().find { employee -> employee.id == employeeId}
 }
