@@ -30,7 +30,6 @@ fun formatDateOfBirth(dateOfBirth: String?): String? {
 }
 
 fun getAgeByDateOfBirth(dateOfBirth: String?): Int? {
-
     val employeeDateOfBirth = formatDateOfBirth(dateOfBirth)
     if (employeeDateOfBirth == null)
         return null
@@ -50,6 +49,7 @@ fun getAgeByDateOfBirth(dateOfBirth: String?): Int? {
     } else (yearsEmployee)
 }
 
-fun getSpecialitiesFromEmployee(specialties: List<Speciality>) = specialties.map{it.name}.toString()
+fun getSpecialitiesFromEmployee(specialties: List<Speciality>) =
+    specialties.map { it.name }.toString()
 
 

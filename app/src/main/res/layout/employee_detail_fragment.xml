@@ -34,14 +34,14 @@
             android:id="@+id/dateOfBirth_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.employeeLiveData.birthday}"
+            android:text="@{viewModel.dateOfBirth}"
             android:textSize="30dp" />
 
         <TextView
             android:id="@+id/age_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Integer.toString(viewModel.employeeLiveData.age)}"
+            android:text="@{viewModel.age}"
             android:textSize="30dp" />
 
         <TextView

@@ -5,8 +5,9 @@ import androidx.room.RoomDatabase
 import com.example.testtask.data.Employee
 import com.example.testtask.data.Speciality
 
-@Database(entities = [Employee::class, Speciality::class], version = 1)
+@Database(entities = [Employee::class, Speciality::class, EmployeeSpecialities::class], version = 1)
 abstract class RoomDB: RoomDatabase(){
     abstract fun employeesDao(): EmployeeDAO
     abstract fun specialitiesDao(): SpecialitiesDAO
+    abstract fun employeesSpecialitiesDAO(): EmployeesSpecialitiesDAO
 }

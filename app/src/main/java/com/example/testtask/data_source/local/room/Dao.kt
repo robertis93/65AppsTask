@@ -1,15 +1,11 @@
 package com.example.testtask.data_source.local.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.testtask.data.Employee
 import com.example.testtask.data.Speciality
 
 @Dao
-interface EmployeeDAO{
-//    @Query("SELECT * FROM employees")
-//    fun getEmployeesLiveData(): LiveData<List<Employee>>
-
+interface EmployeeDAO {
     @Query("SELECT * FROM employees")
     suspend fun getEmployees(): List<Employee>
 
@@ -27,10 +23,7 @@ interface EmployeeDAO{
 }
 
 @Dao
-interface SpecialitiesDAO{
-//    @Query("SELECT * FROM specialities")
-//    fun getSpecialitiesLiveData(): LiveData<List<Speciality>>
-
+interface SpecialitiesDAO {
     @Query("SELECT * FROM specialities")
     suspend fun getSpecialities(): List<Speciality>
 
@@ -47,3 +40,11 @@ interface SpecialitiesDAO{
     suspend fun deleteAll()
 }
 
+@Dao
+interface EmployeesSpecialitiesDAO {
+    @Query("SELECT * FROM EmployeeSpecialities")
+    suspend fun getSpecialities(): List<EmployeeSpecialities>
+
+    @Query("SELECT * FROM EmployeeSpecialities WHERE idEmployee = :idEmployee")
+    suspend fun getSpecialities(idEmployee: String): List<EmployeeSpecialities>
+}

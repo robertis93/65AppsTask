@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TestTask</string>
-    <string name="null_age">Возраст неизвестнен</string>
-    <string name="null_birthday">Дата рождения неизвестна</string>
+    <string name="null_age">Возраст неиз-тен</string>
+    <string name="null_birthday">неиз-тно</string>
 </resources>

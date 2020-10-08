@@ -8,13 +8,16 @@ import com.example.testtask.data_source.local.room.RoomDB
 import com.example.testtask.data_source.remote.RemoteDataSource
 
 class TestTaskApp : Application() {
-    companion object{
+    companion object {
         lateinit var repository: Repository
     }
 
     override fun onCreate() {
         super.onCreate()
         val roomDB = Room.databaseBuilder(applicationContext, RoomDB::class.java, "db").build()
-        repository = Repository(LocalDataSource(roomDB), RemoteDataSource())//") //Dagger2 (Dependency in injection) || ServiceLocator
+        repository = Repository(
+            LocalDataSource(roomDB),
+            RemoteDataSource()
+        )
     }
 }

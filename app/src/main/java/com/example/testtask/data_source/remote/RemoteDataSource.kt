@@ -1,12 +1,8 @@
 package com.example.testtask.data_source.remote
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.example.testtask.data.Employee
 import com.example.testtask.data.Response
 import com.example.testtask.data.Speciality
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 import java.util.*
 
 @Entity(tableName = "Employees")
-data class Employee (
+data class Employee(
     @SerializedName(value = "f_name")
     val firstName: String = "",
     @SerializedName(value = "l_name")
@@ -21,10 +21,10 @@ data class Employee (
     val avatarUrl: String? = "",
     @PrimaryKey
     val id: String = UUID.randomUUID().toString()
-){
-    @TypeConverters(ListSpecialitiesTypeConverter::class)
+) {
     @SerializedName(value = "specialty")
-    var specialties: List<Speciality> = emptyList()
+    @Ignore
+    var specialties: MutableList<Speciality> = mutableListOf()
     fun getAge(): Int? {
         return getAgeByDateOfBirth(birthday)
     }
@@ -32,23 +32,9 @@ data class Employee (
     fun trueFormatDateOfBirth(): String? {
         return formatDateOfBirth(birthday)
     }
-    fun getSpecialities() : String {
+
+    fun getSpecialities(): String {
         return getSpecialitiesFromEmployee(specialties)
     }
 
-}
-
-
-class ListSpecialitiesTypeConverter{
-    @TypeConverter
-    fun fromDB(json: String): List<Speciality>{
-        val specialityType = object : TypeToken<List<Speciality>>() {}.type
-        val list = Gson().fromJson<List<Speciality>>(json, specialityType)
-        return list
-    }
-
-    @TypeConverter
-    fun toDB(list: List<Speciality>): String{
-        return Gson().toJson(list)
-    }
 }

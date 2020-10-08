@@ -8,17 +8,16 @@ import com.example.testtask.R
 import com.example.testtask.data.Employee
 import kotlinx.android.synthetic.main.employee_item.view.*
 
-
-
-
-class EmployeesAdapter(val employees : List<Employee>, val listener: Listener): RecyclerView.Adapter< EmployeesAdapter.EmployeesViewHolder>() {
+class EmployeesAdapter(val employees: List<Employee>, val listener: Listener) :
+    RecyclerView.Adapter<EmployeesAdapter.EmployeesViewHolder>() {
 
     interface Listener {
         fun onItemClick(employee: Employee)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeesViewHolder {
-        val view  = LayoutInflater.from(parent.context).inflate(R.layout.employee_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.employee_item, parent, false)
         val viewHolder = EmployeesViewHolder(view)
         return viewHolder
     }
@@ -35,10 +34,8 @@ class EmployeesAdapter(val employees : List<Employee>, val listener: Listener): 
         }
     }
 
-
-
-    class EmployeesViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        fun bind(employee: Employee){
+    class EmployeesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(employee: Employee) {
             itemView.employee_name.text = employee.firstName
             itemView.employee_secondname.text = employee.lastName
             if (employee.getAge() == null) {
@@ -47,7 +44,6 @@ class EmployeesAdapter(val employees : List<Employee>, val listener: Listener): 
                 itemView.employee_age.text = employee.getAge().toString()
         }
     }
-
 
 
 }
