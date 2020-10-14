@@ -7,9 +7,8 @@ import com.example.testtask.data.Employee
 import com.example.testtask.data_source.Repository
 import kotlinx.coroutines.launch
 
-class EmployeeDetailViewModel(application: Application, val repository: Repository) : AndroidViewModel(application) {
+class EmployeeDetailViewModel(val repository: Repository) : ViewModel() {
     var employeeId: String? = null
-
     val employeeLiveData = MutableLiveData<Employee?>()
 
     init {
@@ -17,19 +16,6 @@ class EmployeeDetailViewModel(application: Application, val repository: Reposito
             val employee = repository.getEmployees().find { employee -> employee.id == employeeId }
             employeeLiveData.postValue(employee)
         }
-    }
-
-    val age = Transformations.map(employeeLiveData){employee->
-        if (employee?.getAge() == null) {
-            application.resources.getString(R.string.null_age)
-        } else
-            employee.getAge().toString()
-    }
-    val dateOfBirth = Transformations.map(employeeLiveData){employee->
-        if (employee?.trueFormatDateOfBirth() == null) {
-            application.resources.getString(R.string.null_birthday)
-        } else
-            employee.trueFormatDateOfBirth().toString()
     }
 
 }

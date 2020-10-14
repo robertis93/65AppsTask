@@ -10,7 +10,7 @@ class Repository (private val localDataSource: LocalDataSource, private val remo
     suspend fun getSpecialities(forceRefresh: Boolean = false): List<Speciality>{
         if (forceRefresh){
             val specialitiesFromServer = remoteDataSource.getSpecialities()
-            localDataSource.updateSpescialities(specialitiesFromServer)
+            localDataSource.updateSpecialities(specialitiesFromServer)
             return specialitiesFromServer
         }
         val specialities = localDataSource.getSpecialities()
@@ -18,7 +18,7 @@ class Repository (private val localDataSource: LocalDataSource, private val remo
             specialities
         else{
             val specialitiesFromServer = remoteDataSource.getSpecialities()
-            localDataSource.updateSpescialities(specialitiesFromServer)
+            localDataSource.updateSpecialities(specialitiesFromServer)
             specialitiesFromServer
         }
     }

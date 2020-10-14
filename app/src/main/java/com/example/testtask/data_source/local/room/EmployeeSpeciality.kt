@@ -12,4 +12,4 @@ import com.example.testtask.data.Speciality
     ForeignKey(entity = Speciality::class, parentColumns =["id"], childColumns =["idSpeciality"])
     ]
 )
-data class EmployeeSpecialities(val idEmployee : String, val idSpeciality : Int)
+data class EmployeeSpeciality(val idEmployee : String, val idSpeciality : Int)

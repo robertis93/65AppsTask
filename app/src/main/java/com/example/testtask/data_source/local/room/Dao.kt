@@ -42,9 +42,21 @@ interface SpecialitiesDAO {
 
 @Dao
 interface EmployeesSpecialitiesDAO {
-    @Query("SELECT * FROM EmployeeSpecialities")
-    suspend fun getSpecialities(): List<EmployeeSpecialities>
+    @Query("SELECT * FROM EmployeeSpeciality")
+    suspend fun getSpecialities(): List<EmployeeSpeciality>
 
-    @Query("SELECT * FROM EmployeeSpecialities WHERE idEmployee = :idEmployee")
-    suspend fun getSpecialities(idEmployee: String): List<EmployeeSpecialities>
+    @Query("SELECT * FROM EmployeeSpeciality WHERE idEmployee = :idEmployee")
+    suspend fun getSpecialities(idEmployee: String): List<EmployeeSpeciality>
+
+    @Insert
+    suspend fun insert(specialityEmployee: EmployeeSpeciality)
+
+    @Update
+    suspend fun update(specialityEmployee: EmployeeSpeciality)
+
+    @Delete
+    suspend fun delete(specialityEmployee: EmployeeSpeciality)
+
+    @Query("DElETE FROM EmployeeSpeciality")
+    suspend fun deleteAll()
 }

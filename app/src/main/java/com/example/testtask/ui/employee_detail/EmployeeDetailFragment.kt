@@ -1,6 +1,5 @@
 package com.example.testtask.ui.employee_detail
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import com.example.testtask.databinding.EmployeeDetailFragmentBinding
 class EmployeeDetailFragment() : Fragment() {
     val viewModel: EmployeeDetailViewModel by viewModels {
         EmployeeDetailViewModelFactory(
-            requireActivity().application,
             TestTaskApp.repository
         )
     }
@@ -35,9 +33,9 @@ class EmployeeDetailFragment() : Fragment() {
 }
 
 @Suppress("UNCHECKED_CAST")
-class EmployeeDetailViewModelFactory(val application: Application, val repository: Repository) :
+class EmployeeDetailViewModelFactory(val repository: Repository) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return EmployeeDetailViewModel(application, repository) as T
+        return EmployeeDetailViewModel(repository) as T
     }
 }

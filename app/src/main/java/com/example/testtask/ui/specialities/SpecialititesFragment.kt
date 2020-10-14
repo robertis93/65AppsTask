@@ -41,13 +41,6 @@ class SpecialititesFragment : Fragment(), SpeciliatiesAdapter.Listener {
             recycler_specialities.adapter = adapter
         }
 
-        refreshButton.setOnClickListener {
-            lifecycleScope.launch {
-                val specialities = viewModel.getSpecialities(true)
-                val adapter = SpeciliatiesAdapter(specialities, this@SpecialititesFragment)
-                recycler_specialities.adapter = adapter
-            }
-        }
 
     }
 

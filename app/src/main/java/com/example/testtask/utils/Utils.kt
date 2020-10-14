@@ -1,10 +1,8 @@
 package com.example.testtask.utils
 
-
 import com.example.testtask.data.Speciality
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 fun formatEmployeeName(firstName: String): String {
     return firstName.toLowerCase().capitalize()
@@ -30,9 +28,7 @@ fun formatDateOfBirth(dateOfBirth: String?): String? {
 }
 
 fun getAgeByDateOfBirth(dateOfBirth: String?): Int? {
-    val employeeDateOfBirth = formatDateOfBirth(dateOfBirth)
-    if (employeeDateOfBirth == null)
-        return null
+    val employeeDateOfBirth = formatDateOfBirth(dateOfBirth) ?: return null
     val nowingDate = SimpleDateFormat("dd.MM.yyyy")
     val currentDate = nowingDate.format(Date())
     val dateCurrentIntYear = currentDate.substring(6..9).toInt()
