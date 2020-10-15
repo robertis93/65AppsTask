@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -36,11 +37,14 @@ class SpecialititesFragment : Fragment(), SpeciliatiesAdapter.Listener {
         recycler_specialities.layoutManager = LinearLayoutManager(context)
         recycler_specialities.addItemDecoration(CharacterItemDecoration(50))
         lifecycleScope.launch {
-            val specialities = viewModel.getSpecialities()
-            val adapter = SpeciliatiesAdapter(specialities, this@SpecialititesFragment)
-            recycler_specialities.adapter = adapter
+            try {
+                val specialities = viewModel.getSpecialities()
+                val adapter = SpeciliatiesAdapter(specialities, this@SpecialititesFragment)
+                recycler_specialities.adapter = adapter
+            } catch (e: Exception) {
+                Toast.makeText(context, "Ошибка. Нет доступа к серверу", Toast.LENGTH_SHORT).show()
+            }
         }
-
 
     }
 
